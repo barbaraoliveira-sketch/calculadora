@@ -5,6 +5,8 @@ def main(pagina:ft.Page):
     pagina.title = "Calculadora"
     pagina.bgcolor = "#806D58"
     pagina.horizontal_alignment = "center"
+    pagina.window.height = 800 #altura da janela
+    pagina.window.width = 1000 # largura da janela
 
    
 
@@ -12,6 +14,13 @@ def main(pagina:ft.Page):
                      size = 40,
                      font_family = "Broadway",
                      color= "#462E01")
+
+    historico = ft.Text(value="histórico",
+                         size = 30,
+                         font_family = "Elephant",
+                         color= "#83714F",
+                         
+                        )
 
 
     campo_valor1 = ft.TextField(label = "Digite o Valor:",
@@ -25,7 +34,8 @@ def main(pagina:ft.Page):
                                bgcolor = "#c2b3a5",
                                border_radius = 50,
                                border_color= "#6d5433",
-                               border_width= 3)
+                               border_width= 3,
+                               value = "")
 
     linha_valores = ft.Row(controls = [campo_valor1,
                                       campo_valor2],
@@ -89,13 +99,31 @@ def main(pagina:ft.Page):
                                       botao_multiplicacao,
                                       botao_divisao],
                                       alignment = "center")
+
+    container1 = ft.Container(content=ft.Column(controls=[linha_valores,
+                                                            linha_botoes,]),
+                                       bgcolor= "#442913",
+                                       padding=30,
+                                       border=ft.Border.all(1),
+                                       border_radius = 30)
+
+    container2 = ft.Container(content=ft.Column(controls=[historico],
+                                            horizontal_alignment=ft.CrossAxisAlignment.CENTER,),
+                                           bgcolor= "#442913",
+                                           padding=30,
+                                           border=ft.Border.all(1),
+                                           border_radius = 30,
+                                           width=1000,
+                                           height=450)
     
 
 
 
     pagina.controls = [titulo,
-                       linha_valores,
-                       linha_botoes       
+                       container1,
+                       container2,
+                       
+
                        ]
 
     pagina.update()
