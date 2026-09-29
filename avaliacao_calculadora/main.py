@@ -15,10 +15,10 @@ def main(pagina:ft.Page):
                      font_family = "Broadway",
                      color= "#462E01")
 
-    historico = ft.Text(value="histórico",
+    historico = ft.Text(value="histórico de calculos",
                          size = 30,
                          font_family = "Elephant",
-                         color= "#83714F",
+                         color= "#462E01",
                          
                         )
 
@@ -41,29 +41,57 @@ def main(pagina:ft.Page):
                                       campo_valor2],
                                       alignment = "center")
 
+    lista_contas = []
+
     def soma():
         campo1 = int(campo_valor1.value)
         campo2 = int(campo_valor2.value)
         resultado = campo1 + campo2
-        print(f"{campo1} + {campo2} = {resultado}")
+        if resultado != 67:
+            lista_contas.append(ft.TextField(value=f"{campo1} + {campo2} = {resultado}",
+                                         width=300,
+                                         bgcolor="#b4a290",
+                                         color="#462E01",
+                                         border_radius=20,
+                                         border_color= "#b4a290"))
+
+        elif resultado == 67:
+             pagina.show_dialog(ft.AlertDialog(title=ft.Text("ALERTA DE AURA!"),
+                                               content=ft.Text("67 67 67 67 67 "),
+                                               open=True,))
 
     def sub():
         campo1 = int(campo_valor1.value)
         campo2 = int(campo_valor2.value)
         resultado = campo1 - campo2
-        print(f"{campo1} - {campo2} = {resultado}")
+        lista_contas.append(ft.TextField(value=f"{campo1} - {campo2} = {resultado}",
+                                                width=300,
+                                                bgcolor="#b4a290",
+                                                color="#462E01",
+                                                border_radius=20,
+                                                border_color= "#b4a290"))
 
     def mult():
             campo1 = int(campo_valor1.value)
             campo2 = int(campo_valor2.value)
             resultado = campo1 * campo2
-            print(f"{campo1} x {campo2} = {resultado}")
+            lista_contas.append(ft.TextField(value=f"{campo1} x {campo2} = {resultado}",
+                                                     width=300,
+                                                     bgcolor="#b4a290",
+                                                    color="#462E01",
+                                                    border_radius=20,
+                                                    border_color= "#b4a290"))
     
     def div():
             campo1 = int(campo_valor1.value)
             campo2 = int(campo_valor2.value)
             resultado = campo1 / campo2
-            print(f"{campo1} ÷ {campo2} = {resultado}")
+            lista_contas.append(ft.TextField(value=f"{campo1} ÷ {campo2} = {resultado}",
+                                                     width=300,
+                                                     bgcolor="#b4a290",
+                                                    color="#462E01",
+                                                    border_radius=20,
+                                                    border_color= "#b4a290"))
 
     botao_soma = ft.FloatingActionButton(icon = ft.Icon(icon=ft.Icons.ADD,
                                                 color="#FFFFFF"),
@@ -102,16 +130,17 @@ def main(pagina:ft.Page):
 
     container1 = ft.Container(content=ft.Column(controls=[linha_valores,
                                                             linha_botoes,]),
-                                       bgcolor= "#442913",
+                                       bgcolor= "#533B27",
                                        padding=30,
-                                       border=ft.Border.all(1),
+                                       #border=ft.Border.all(1),
                                        border_radius = 30)
 
-    container2 = ft.Container(content=ft.Column(controls=[historico],
+    container2 = ft.Container(content=ft.Column(controls=[historico,
+                                                          ft.Column(controls=lista_contas,),],
                                             horizontal_alignment=ft.CrossAxisAlignment.CENTER,),
-                                           bgcolor= "#442913",
+                                           bgcolor= "#6E5641",
                                            padding=30,
-                                           border=ft.Border.all(1),
+                                           #border=ft.Border.all(1),
                                            border_radius = 30,
                                            width=1000,
                                            height=450)
@@ -122,8 +151,6 @@ def main(pagina:ft.Page):
     pagina.controls = [titulo,
                        container1,
                        container2,
-                       
-
                        ]
 
     pagina.update()
