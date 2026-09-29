@@ -44,8 +44,15 @@ def main(pagina:ft.Page):
     lista_contas = []
 
     def soma():
-        campo1 = int(campo_valor1.value)
-        campo2 = int(campo_valor2.value)
+
+        try:
+            campo1 = int(campo_valor1.value)
+            campo2 = int(campo_valor2.value)
+
+        except:
+            pagina.show_dialog(ft.SnackBar("Digite um número"))
+            return
+             
         resultado = campo1 + campo2
         if resultado != 67:
             lista_contas.append(ft.TextField(value=f"{campo1} + {campo2} = {resultado}",
@@ -61,8 +68,15 @@ def main(pagina:ft.Page):
                                                open=True,))
 
     def sub():
-        campo1 = int(campo_valor1.value)
-        campo2 = int(campo_valor2.value)
+
+        try:
+            campo1 = int(campo_valor1.value)
+            campo2 = int(campo_valor2.value)
+
+        except:
+            pagina.show_dialog(ft.SnackBar("Digite um número"))
+            return
+
         resultado = campo1 - campo2
         lista_contas.append(ft.TextField(value=f"{campo1} - {campo2} = {resultado}",
                                                 width=300,
@@ -72,8 +86,15 @@ def main(pagina:ft.Page):
                                                 border_color= "#b4a290"))
 
     def mult():
-            campo1 = int(campo_valor1.value)
-            campo2 = int(campo_valor2.value)
+
+            try:
+                campo1 = int(campo_valor1.value)
+                campo2 = int(campo_valor2.value)
+
+            except:
+                pagina.show_dialog(ft.SnackBar("Digite um número"))
+                return
+            
             resultado = campo1 * campo2
             lista_contas.append(ft.TextField(value=f"{campo1} x {campo2} = {resultado}",
                                                      width=300,
@@ -83,10 +104,17 @@ def main(pagina:ft.Page):
                                                     border_color= "#b4a290"))
     
     def div():
+
+        try:
             campo1 = int(campo_valor1.value)
             campo2 = int(campo_valor2.value)
-            resultado = campo1 / campo2
-            lista_contas.append(ft.TextField(value=f"{campo1} ÷ {campo2} = {resultado}",
+
+        except:
+            pagina.show_dialog(ft.SnackBar("Digite um número"))
+            return
+        
+        resultado = campo1 / campo2
+        lista_contas.append(ft.TextField(value=f"{campo1} ÷ {campo2} = {resultado}",
                                                      width=300,
                                                      bgcolor="#b4a290",
                                                     color="#462E01",
